@@ -1,0 +1,16 @@
+
+###> symfony/framework-bundle ###
+/cp2020/.env.local
+/cp2020/.env.local.php
+/cp2020/.env.*.local
+/cp2020/config/secrets/prod/prod.decrypt.private.php
+/cp2020/public/bundles/
+/cp2020/var/
+/cp2020/vendor/
+###< symfony/framework-bundle ###
+
+###> symfony/phpunit-bridge ###
+/cp2020/.phpunit
+/cp2020/.phpunit.result.cache
+/cp2020/phpunit.xml
+###< symfony/phpunit-bridge ###
