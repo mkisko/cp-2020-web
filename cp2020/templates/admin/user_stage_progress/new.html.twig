@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New UserStageProgress{% endblock %}
+
+{% block body %}
+    <h1>Create new UserStageProgress</h1>
+
+    {{ include('admin/user_stage_progress/_form.html.twig') }}
+
+    <a href="{{ path('user_stage_progress_index') }}">back to list</a>
+{% endblock %}
