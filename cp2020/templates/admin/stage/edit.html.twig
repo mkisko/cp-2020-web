@@ -38,29 +38,25 @@
     <div class="container">
         <div class="card gutter-b">
             <div class="card-body">
-                <form method="post">
-                    <div class="form-group">
-						<label>Название этапа</label>
-						<input type="text" class="form-control" name="stage[title]" value="{{ form.vars.value.title }}">
-						<span class="form-text text-muted">Это название будет показано везде где используются навыки</span>
-					</div>
-
-                    {{ form_widget(form._token) }}
-
-                    <div class="form-group">
-                        <label>Навыки</label>
-                        <select name="stage[skills][]" required="required" class="form-control" multiple="multiple">
-                            {% for choice in form.skills.vars.choices %}
-                                <option value="{{ choice.value }}">{{ choice.label }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-
-                    <button class="btn btn-primary" type="submit">Обновить</button>
-                </form>
+                {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <button class="btn btn-success mt-3">{{ button_label|default('Сохранить') }}</button>
+                {{ form_end(form) }}
             </div>
         </div>
 
-        <a href="{{ path('skill_index') }}" class="btn btn-success">Назад к списку навыков</a>
+        <a href="{{ path('skill_index') }}" >Назад к списку этапов</a>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $('form[name=stage]').each(function() {
+            $(this).find(':input').each(function () {
+                if ($(this)[0].localName == 'button') return
+
+                $(this).addClass('form-control')
+            })
+        })
+    </script>
 {% endblock %}
