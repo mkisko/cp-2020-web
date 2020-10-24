@@ -17,56 +17,56 @@ class Vacancy
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"vacancies"})
+     * @Groups({"vacancies", "companies"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"vacancies"})
+     * @Groups({"vacancies", "companies"})
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"vacancies"})
+     * @Groups({"vacancies", "companies"})
      */
     private $description;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Groups({"vacancies"})
+     * @Groups({"vacancies", "companies"})
      */
     private $minCost;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Groups({"vacancies"})
+     * @Groups({"vacancies", "companies"})
      */
     private $maxCost;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Groups({"vacancies"})
+     * @Groups({"vacancies", "companies"})
      */
     private $typeIntern;
 
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"vacancies"})
+     * @Groups({"vacancies", "companies"})
      */
     private $Expired;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"vacancies"})
+     * @Groups({"vacancies", "companies"})
      */
     private $PublichedAt;
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"vacancies"})
+     * @Groups({"vacancies", "companies"})
      */
     private $conditions;
 
@@ -77,15 +77,20 @@ class Vacancy
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"vacancies"})
+     * @Groups({"vacancies", "companies"})
      */
     private $City;
 
     /**
      * @ORM\ManyToMany(targetEntity=Skill::class, inversedBy="vacancies")
-     * @Groups({"vacancies"})
+     * @Groups({"vacancies", "companies"})
      */
     private $Skills;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Company::class, inversedBy="vacancies")
+     */
+    private $company;
 
 
     public function __construct()
@@ -241,6 +246,18 @@ class Vacancy
     public function removeSkill(Skill $skill): self
     {
         $this->Skills->removeElement($skill);
+
+        return $this;
+    }
+
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?Company $company): self
+    {
+        $this->company = $company;
 
         return $this;
     }

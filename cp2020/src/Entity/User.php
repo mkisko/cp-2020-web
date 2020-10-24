@@ -18,13 +18,13 @@ class User implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"users", "progress"})
+     * @Groups({"users", "progress", "companies"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Groups({"users", "progress"})
+     * @Groups({"users", "progress", "companies"})
      */
     private $email;
 
@@ -54,12 +54,18 @@ class User implements UserInterface
      */
     private $vacancies;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Company::class, mappedBy="manager")
+     */
+    private $companies;
+
 
 
     public function __construct()
     {
         $this->userStageProgress = new ArrayCollection();
         $this->vacancies = new ArrayCollection();
+        $this->companies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -206,6 +212,36 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($vacancy->getUser() === $this) {
                 $vacancy->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Company[]
+     */
+    public function getCompanies(): Collection
+    {
+        return $this->companies;
+    }
+
+    public function addCompany(Company $company): self
+    {
+        if (!$this->companies->contains($company)) {
+            $this->companies[] = $company;
+            $company->setManager($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCompany(Company $company): self
+    {
+        if ($this->companies->removeElement($company)) {
+            // set the owning side to null (unless already changed)
+            if ($company->getManager() === $this) {
+                $company->setManager(null);
             }
         }
 

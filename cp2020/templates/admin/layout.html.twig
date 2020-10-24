@@ -2,7 +2,7 @@
 
 {% block title %}Admin Panel!{% endblock %}
 
-{% block menu %} 
+{% block menu %}
     <div class="header-bottom">
         <div class="container">
             <div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
@@ -28,6 +28,11 @@
                         <li class="menu-item menu-item-rel">
                             <a href="{{ path('vacancy_index') }}" class="menu-link">
                                 <span class="menu-text">Вакансии</span>
+                            </a>
+                        </li>
+                        <li class="menu-item menu-item-rel">
+                            <a href="{{ path('company_index') }}" class="menu-link">
+                                <span class="menu-text">Компании</span>
                             </a>
                         </li>
                     </ul>

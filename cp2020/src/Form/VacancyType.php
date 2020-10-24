@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Company;
 use App\Entity\Skill;
 use App\Entity\User;
 use App\Entity\Vacancy;
@@ -23,6 +24,12 @@ class VacancyType extends AbstractType
             ->add('Expired')
             ->add('PublichedAt')
             ->add('conditions')
+            ->add('company', EntityType::class, [
+                'label' => "Компания",
+                'class' => Company::class,
+                'choice_label' => 'title',
+                'required' => true
+            ])
             ->add('city')
             ->add('user', EntityType::class, [
                 'label' => "Пользователь",
