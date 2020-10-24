@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Admin Panel!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+    <div>
+        <a href="{{ path('skill_index') }}">Скиллы</a>
+        <a href="{{ path('stage_index') }}">Этапы</a>
+        <a href="{{ path('user_stage_progress_index') }}">Этапы студента</a>
+        <a href="{{ path('vacancy_index') }}">Вакансии</a>
+    </div>
+    {% block body %}{% endblock %}
+    {% block javascripts %}{% endblock %}
+    </body>
+</html>

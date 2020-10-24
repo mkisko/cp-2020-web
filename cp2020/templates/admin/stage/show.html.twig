@@ -1,0 +1,26 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %}Stage{% endblock %}
+
+{% block body %}
+    <h1>Stage</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ stage.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ stage.title }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('stage_index') }}">back to list</a>
+
+    <a href="{{ path('stage_edit', {'id': stage.id}) }}">edit</a>
+
+    {{ include('admin/stage/_delete_form.html.twig') }}
+{% endblock %}

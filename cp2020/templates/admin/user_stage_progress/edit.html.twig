@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit UserStageProgress{% endblock %}
+
+{% block body %}
+    <h1>Edit UserStageProgress</h1>
+
+    {{ include('user_stage_progress/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('user_stage_progress_index') }}">back to list</a>
+
+    {{ include('user_stage_progress/_delete_form.html.twig') }}
+{% endblock %}

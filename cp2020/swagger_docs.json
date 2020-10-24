@@ -5,16 +5,16 @@
         "version": "0.0.0"
     },
     "paths": {
-        "/api/users": {
+        "/api/stages": {
             "get": {
                 "tags": [
-                    "User"
+                    "Stage"
                 ],
-                "operationId": "getUserCollection",
-                "summary": "Retrieves the collection of User resources.",
+                "operationId": "getStageCollection",
+                "summary": "Retrieves the collection of Stage resources.",
                 "responses": {
                     "200": {
-                        "description": "User collection response",
+                        "description": "Stage collection response",
                         "content": {
                             "application/ld+json": {
                                 "schema": {
@@ -23,7 +23,7 @@
                                         "hydra:member": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/components/schemas/User:jsonld"
+                                                "$ref": "#/components/schemas/Stage:jsonld"
                                             }
                                         },
                                         "hydra:totalItems": {
@@ -98,7 +98,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/User"
+                                        "$ref": "#/components/schemas/Stage"
                                     }
                                 }
                             },
@@ -106,7 +106,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/User"
+                                        "$ref": "#/components/schemas/Stage"
                                     }
                                 }
                             }
@@ -128,37 +128,37 @@
             },
             "post": {
                 "tags": [
-                    "User"
+                    "Stage"
                 ],
-                "operationId": "postUserCollection",
-                "summary": "Creates a User resource.",
+                "operationId": "postStageCollection",
+                "summary": "Creates a Stage resource.",
                 "responses": {
                     "201": {
-                        "description": "User resource created",
+                        "description": "Stage resource created",
                         "content": {
                             "application/ld+json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/User:jsonld"
+                                    "$ref": "#/components/schemas/Stage:jsonld"
                                 }
                             },
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/User"
+                                    "$ref": "#/components/schemas/Stage"
                                 }
                             },
                             "text/html": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/User"
+                                    "$ref": "#/components/schemas/Stage"
                                 }
                             }
                         },
                         "links": {
-                            "GetUserItem": {
+                            "GetStageItem": {
                                 "parameters": {
                                     "id": "$response.body#/id"
                                 },
-                                "operationId": "getUserItem",
-                                "description": "The `id` value returned in the response can be used as the `id` parameter in `GET /api/users/{id}`."
+                                "operationId": "getStageItem",
+                                "description": "The `id` value returned in the response can be used as the `id` parameter in `GET /api/stages/{id}`."
                             }
                         }
                     },
@@ -173,31 +173,31 @@
                     "content": {
                         "application/ld+json": {
                             "schema": {
-                                "$ref": "#/components/schemas/User:jsonld"
+                                "$ref": "#/components/schemas/Stage:jsonld"
                             }
                         },
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/User"
+                                "$ref": "#/components/schemas/Stage"
                             }
                         },
                         "text/html": {
                             "schema": {
-                                "$ref": "#/components/schemas/User"
+                                "$ref": "#/components/schemas/Stage"
                             }
                         }
                     },
-                    "description": "The new User resource"
+                    "description": "The new Stage resource"
                 }
             }
         },
-        "/api/users/{id}": {
+        "/api/stages/{id}": {
             "get": {
                 "tags": [
-                    "User"
+                    "Stage"
                 ],
-                "operationId": "getUserItem",
-                "summary": "Retrieves a User resource.",
+                "operationId": "getStageItem",
+                "summary": "Retrieves a Stage resource.",
                 "parameters": [
                     {
                         "name": "id",
@@ -210,21 +210,21 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "User resource response",
+                        "description": "Stage resource response",
                         "content": {
                             "application/ld+json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/User:jsonld-user:item"
+                                    "$ref": "#/components/schemas/Stage:jsonld"
                                 }
                             },
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/User-user:item"
+                                    "$ref": "#/components/schemas/Stage"
                                 }
                             },
                             "text/html": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/User-user:item"
+                                    "$ref": "#/components/schemas/Stage"
                                 }
                             }
                         }
@@ -233,14 +233,643 @@
                         "description": "Resource not found"
                     }
                 }
+            },
+            "delete": {
+                "tags": [
+                    "Stage"
+                ],
+                "operationId": "deleteStageItem",
+                "summary": "Removes the Stage resource.",
+                "responses": {
+                    "204": {
+                        "description": "Stage resource deleted"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Stage"
+                ],
+                "operationId": "putStageItem",
+                "summary": "Replaces the Stage resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Stage resource updated",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Stage:jsonld"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Stage"
+                                }
+                            },
+                            "text/html": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Stage"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/ld+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Stage:jsonld"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Stage"
+                            }
+                        },
+                        "text/html": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Stage"
+                            }
+                        }
+                    },
+                    "description": "The updated Stage resource"
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Stage"
+                ],
+                "operationId": "patchStageItem",
+                "summary": "Updates the Stage resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Stage resource updated",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Stage:jsonld"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Stage"
+                                }
+                            },
+                            "text/html": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Stage"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/merge-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Stage"
+                            }
+                        }
+                    },
+                    "description": "The updated Stage resource"
+                }
+            }
+        },
+        "/api/user_stage_progresses": {
+            "get": {
+                "tags": [
+                    "UserStageProgress"
+                ],
+                "operationId": "getUserStageProgressCollection",
+                "summary": "Retrieves the collection of UserStageProgress resources.",
+                "responses": {
+                    "200": {
+                        "description": "UserStageProgress collection response",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "hydra:member": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/UserStageProgress:jsonld"
+                                            }
+                                        },
+                                        "hydra:totalItems": {
+                                            "type": "integer",
+                                            "minimum": 0
+                                        },
+                                        "hydra:view": {
+                                            "type": "object",
+                                            "properties": {
+                                                "@id": {
+                                                    "type": "string",
+                                                    "format": "iri-reference"
+                                                },
+                                                "@type": {
+                                                    "type": "string"
+                                                },
+                                                "hydra:first": {
+                                                    "type": "string",
+                                                    "format": "iri-reference"
+                                                },
+                                                "hydra:last": {
+                                                    "type": "string",
+                                                    "format": "iri-reference"
+                                                },
+                                                "hydra:next": {
+                                                    "type": "string",
+                                                    "format": "iri-reference"
+                                                }
+                                            }
+                                        },
+                                        "hydra:search": {
+                                            "type": "object",
+                                            "properties": {
+                                                "@type": {
+                                                    "type": "string"
+                                                },
+                                                "hydra:template": {
+                                                    "type": "string"
+                                                },
+                                                "hydra:variableRepresentation": {
+                                                    "type": "string"
+                                                },
+                                                "hydra:mapping": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "@type": {
+                                                                "type": "string"
+                                                            },
+                                                            "variable": {
+                                                                "type": "string"
+                                                            },
+                                                            "property": {
+                                                                "type": "string"
+                                                            },
+                                                            "required": {
+                                                                "type": "boolean"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "hydra:member"
+                                    ]
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/UserStageProgress"
+                                    }
+                                }
+                            },
+                            "text/html": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/UserStageProgress"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "description": "The collection page number",
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "UserStageProgress"
+                ],
+                "operationId": "postUserStageProgressCollection",
+                "summary": "Creates a UserStageProgress resource.",
+                "responses": {
+                    "201": {
+                        "description": "UserStageProgress resource created",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserStageProgress:jsonld"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserStageProgress"
+                                }
+                            },
+                            "text/html": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserStageProgress"
+                                }
+                            }
+                        },
+                        "links": {
+                            "GetUserStageProgressItem": {
+                                "parameters": {
+                                    "id": "$response.body#/id"
+                                },
+                                "operationId": "getUserStageProgressItem",
+                                "description": "The `id` value returned in the response can be used as the `id` parameter in `GET /api/user_stage_progresses/{id}`."
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/ld+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserStageProgress:jsonld"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserStageProgress"
+                            }
+                        },
+                        "text/html": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserStageProgress"
+                            }
+                        }
+                    },
+                    "description": "The new UserStageProgress resource"
+                }
+            }
+        },
+        "/api/user_stage_progresses/{id}": {
+            "get": {
+                "tags": [
+                    "UserStageProgress"
+                ],
+                "operationId": "getUserStageProgressItem",
+                "summary": "Retrieves a UserStageProgress resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "UserStageProgress resource response",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserStageProgress:jsonld"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserStageProgress"
+                                }
+                            },
+                            "text/html": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserStageProgress"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "UserStageProgress"
+                ],
+                "operationId": "deleteUserStageProgressItem",
+                "summary": "Removes the UserStageProgress resource.",
+                "responses": {
+                    "204": {
+                        "description": "UserStageProgress resource deleted"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "UserStageProgress"
+                ],
+                "operationId": "putUserStageProgressItem",
+                "summary": "Replaces the UserStageProgress resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "UserStageProgress resource updated",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserStageProgress:jsonld"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserStageProgress"
+                                }
+                            },
+                            "text/html": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserStageProgress"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/ld+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserStageProgress:jsonld"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserStageProgress"
+                            }
+                        },
+                        "text/html": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserStageProgress"
+                            }
+                        }
+                    },
+                    "description": "The updated UserStageProgress resource"
+                }
+            },
+            "patch": {
+                "tags": [
+                    "UserStageProgress"
+                ],
+                "operationId": "patchUserStageProgressItem",
+                "summary": "Updates the UserStageProgress resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "UserStageProgress resource updated",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserStageProgress:jsonld"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserStageProgress"
+                                }
+                            },
+                            "text/html": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserStageProgress"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/merge-patch+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserStageProgress"
+                            }
+                        }
+                    },
+                    "description": "The updated UserStageProgress resource"
+                }
             }
         }
     },
     "components": {
         "schemas": {
-            "User": {
+            "Skill": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "readOnly": true,
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "stage": {
+                        "type": "string",
+                        "format": "iri-reference",
+                        "nullable": true
+                    }
+                }
+            },
+            "Skill:jsonld": {
+                "type": "object",
+                "properties": {
+                    "@context": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "@id": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "@type": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "id": {
+                        "readOnly": true,
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "stage": {
+                        "type": "string",
+                        "format": "iri-reference",
+                        "nullable": true
+                    }
+                }
+            },
+            "Stage": {
                 "type": "object",
                 "description": "",
+                "properties": {
+                    "id": {
+                        "readOnly": true,
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "skills": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Skill"
+                        }
+                    },
+                    "userStageProgress": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "format": "iri-reference"
+                        }
+                    }
+                }
+            },
+            "Stage:jsonld": {
+                "type": "object",
+                "description": "",
+                "properties": {
+                    "@context": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "@id": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "@type": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "id": {
+                        "readOnly": true,
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "skills": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Skill:jsonld"
+                        }
+                    },
+                    "userStageProgress": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "format": "iri-reference"
+                        }
+                    }
+                }
+            },
+            "User": {
+                "type": "object",
                 "properties": {
                     "id": {
                         "readOnly": true,
@@ -274,25 +903,18 @@
                     "isVerified": {
                         "writeOnly": true,
                         "type": "boolean"
-                    }
-                }
-            },
-            "User-user:item": {
-                "type": "object",
-                "description": "",
-                "properties": {
-                    "id": {
-                        "readOnly": true,
-                        "type": "integer"
                     },
-                    "email": {
-                        "type": "string"
+                    "userStageProgress": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "format": "iri-reference"
+                        }
                     }
                 }
             },
             "User:jsonld": {
                 "type": "object",
-                "description": "",
                 "properties": {
                     "@context": {
                         "readOnly": true,
@@ -338,10 +960,43 @@
                     "isVerified": {
                         "writeOnly": true,
                         "type": "boolean"
+                    },
+                    "userStageProgress": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "format": "iri-reference"
+                        }
                     }
                 }
             },
-            "User:jsonld-user:item": {
+            "UserStageProgress": {
+                "type": "object",
+                "description": "",
+                "properties": {
+                    "id": {
+                        "readOnly": true,
+                        "type": "integer"
+                    },
+                    "User": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    },
+                    "Stage": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "format": "iri-reference"
+                        }
+                    },
+                    "status": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "UserStageProgress:jsonld": {
                 "type": "object",
                 "description": "",
                 "properties": {
@@ -361,8 +1016,21 @@
                         "readOnly": true,
                         "type": "integer"
                     },
-                    "email": {
-                        "type": "string"
+                    "User": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/User:jsonld"
+                        }
+                    },
+                    "Stage": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "format": "iri-reference"
+                        }
+                    },
+                    "status": {
+                        "type": "integer"
                     }
                 }
             }

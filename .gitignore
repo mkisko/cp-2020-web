@@ -16,5 +16,5 @@
 /cp2020/phpunit.xml
 /cp2020/.DS_Store
 /cp2020/.idea/
-/.idea/
+.idea/
 ###< symfony/phpunit-bridge ###
