@@ -17,12 +17,6 @@ class CompanyType extends AbstractType
             ->add('title')
             ->add('description')
             ->add('type')
-            ->add('manager', EntityType::class, [
-                'label' => "Пользователь",
-                'class' => User::class,
-                'choice_label' => 'email',
-                'required' => true
-            ])
         ;
     }
 
