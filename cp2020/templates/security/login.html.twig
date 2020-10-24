@@ -1,42 +1,66 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Авторизация{% endblock %}
+
+{% block stylesheets %}
+    <link href="assets/css/pages/login/login-2.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header %}<!-- hidden-->{% endblock %}
 
 {% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+    <div class="login login-2 login-signin-on d-flex flex-column flex-lg-row flex-column-fluid bg-white" id="kt_login">
+        <div class="login-aside order-2 order-lg-1 d-flex flex-row-auto position-relative overflow-hidden">
+            <div class="d-flex flex-column-fluid flex-column justify-content-between py-9 px-7 py-lg-13 px-lg-35">
+                <a href="#" class="text-center pt-2">
+                <!--    <img src="assets/media/logos/logo.png" class="max-h-75px" alt="" /> -->
+                </a>
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                <div class="d-flex flex-column-fluid flex-column flex-center">
+                    <div class="login-form login-signin py-11">
+                        <form class="form" novalidate="novalidate" id="kt_login_signup_form" method="post">
+                            <div class="text-center pb-8">
+                                <h2 class="font-weight-bolder text-dark font-size-h2 font-size-h1-lg">
+                                    Авторизуйтесь
+                                </h2>
+                                <span class="text-muted font-weight-bold font-size-h4">или <a href="{{ path('app_register') }}" class="text-primary font-weight-bolder">зарегистрируйтесь</a></span>
+                            </div>
+
+                            {% if error %}
+                                <div class="alert alert-danger">Логин или пароль не совпадают! Попробуйте еще раз</div>
+                            {% endif %}
+                            
+                            <input type="hidden" name="token" value="{{ csrf_token('random') }}">
+
+                            <div class="form-group">
+                                <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="email" placeholder="Ваша электронная почта" name="email" autocomplete="off" />
+                            </div>
+
+                            <div class="form-group">
+                                <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="text" placeholder="Ваш пароль" name="password" autocomplete="off" />
+                            </div>
+
+                            <div class="form-group d-flex flex-wrap flex-center pb-lg-0 pb-3">
+                                <button type="submit" class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mx-4">Авторизоваться</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-    {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" required>
+        <div class="content order-1 order-lg-2 d-flex flex-column w-100 pb-0" style="background-color: #B1DCED;">
+            <div class="d-flex flex-column justify-content-center text-center pt-lg-40 pt-md-5 pt-sm-5 px-lg-0 pt-5 px-7">
+                <h3 class="display4 font-weight-bolder my-7 text-dark" style="color: #986923;">Цифровой прорыв 2020
+                </h3>
+                <p class="font-weight-bolder font-size-h2-md font-size-lg text-dark opacity-70">
+                    Кейс СКФУ <br />
+                    Команда GC.Platform
+                </p>
+            </div>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
+            <div class="content-img d-flex flex-row-fluid bgi-no-repeat bgi-position-y-bottom bgi-position-x-center"
+                style="background-image: url(assets/media/svg/illustrations/login-visual-2.svg);"></div>
         </div>
-    #}
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
+    </div>
 {% endblock %}
