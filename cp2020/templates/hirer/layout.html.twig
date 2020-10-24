@@ -1,6 +1,37 @@
-{% extends 'hirer/base.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}{% endblock %}
+{% block menu %}
+    <div class="header-bottom">
+        <div class="container">
+            <div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
+                <div id="kt_header_menu" class="header-menu header-menu-left header-menu-mobile  header-menu-layout-default ">
+                    <ul class="menu-nav">
+                        <li class="menu-item menu-item-rel">
+                            <a href="{{ path('skill_index') }}" class="menu-link">
+                                <span class="menu-text">Резюме</span>
+                            </a>
+                        </li>
 
+                        <li class="menu-item menu-item-rel">
+                            <a href="{{ path('skill_index') }}" class="menu-link">
+                                <span class="menu-text">Отклики</span>
+                            </a>
+                        </li>
 
+                        <li class="menu-item menu-item-rel">
+                            <a href="{{ path('stage_index') }}" class="menu-link">
+                                <span class="menu-text">Компания</span>
+                            </a>
+                        </li>
 
+                        <li class="menu-item menu-item-rel">
+                            <a href="{{ path('user_stage_progress_index') }}" class="menu-link">
+                                <span class="menu-text">Настройки</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -81,7 +81,7 @@ class CompanyController extends AbstractController {
      * @param Company $company
      * @return Response
      */
-    public function edit(Request $request, Company $company): Response
+    public function edit(int $id, Request $request, Company $company): Response
     {
         $form = $this->createForm(CompanyType::class, $company);
         $form->handleRequest($request);
@@ -89,7 +89,7 @@ class CompanyController extends AbstractController {
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('hirer_show_profile');
+            return $this->redirectToRoute('hirer_show_profile', ['id' => $id]);
         }
 
         return $this->render('hirer/company/edit.html.twig', [
