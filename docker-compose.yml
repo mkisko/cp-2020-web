@@ -2,25 +2,30 @@ version: '3'
 
 services:
     nginx:
-        build:
-            context: .
-            dockerfile: Dockerfile-nginx
+        image: nginx:latest
         volumes:
+            - ./build/nginx/:/etc/nginx/conf.d/
             - ./cp2020/:/var/www/cp2020/
         ports:
-            - 8001:80
+            - 8000:80
         networks:
             - cp2020
+        depends_on: 
+            - php
+    
     php:
         build:
-            context: .
-            dockerfile: Dockerfile-php
+            context: ./build/php
+            dockerfile: Dockerfile
         volumes:
-            - ./cp2020/:/var/www/cp2020/
+            - ./cp2020/:/var/www/cp2020/:delegated
+        ports: 
+            - 9000:9000
         networks:
             - cp2020
         depends_on:
             - mysql
+    
     mysql:
         image: mysql
         command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci', '--default-authentication-plugin=mysql_native_password']

@@ -30,13 +30,4 @@ RUN docker-php-ext-install \
 
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
 
-COPY cp2020/ /var/www/cp2020
-
 WORKDIR /var/www/cp2020/
-
-WORKDIR /var/www/cp2020/
-
-RUN composer install
-RUN bin/console doctrine:schema:create
-RUN bin/console doctrine:schema:update --force
-RUN bin/console cache:clear
