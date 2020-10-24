@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}UserStageProgress index{% endblock %}
+
+{% block body %}
+    <h1>UserStageProgress index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Status</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user_stage_progress in user_stage_progresses %}
+            <tr>
+                <td>{{ user_stage_progress.id }}</td>
+                <td>{{ user_stage_progress.status }}</td>
+                <td>
+                    <a href="{{ path('user_stage_progress_show', {'id': user_stage_progress.id}) }}">show</a>
+                    <a href="{{ path('user_stage_progress_edit', {'id': user_stage_progress.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('user_stage_progress_new') }}">Create new</a>
+{% endblock %}
