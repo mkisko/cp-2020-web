@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Skill;
 use App\Entity\User;
 use App\Entity\Vacancy;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -22,10 +23,18 @@ class VacancyType extends AbstractType
             ->add('Expired')
             ->add('PublichedAt')
             ->add('conditions')
+            ->add('city')
             ->add('user', EntityType::class, [
                 'label' => "Пользователь",
                 'class' => User::class,
                 'choice_label' => 'email',
+                'required' => true
+            ])
+            ->add('skills', EntityType::class, [
+                'label' => "Навыки",
+                'class' => Skill::class,
+                'choice_label' => 'title',
+                'multiple' => 'true',
                 'required' => true
             ])
         ;

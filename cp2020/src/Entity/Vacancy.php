@@ -34,12 +34,6 @@ class Vacancy
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity=Skill::class, mappedBy="vacancy")
-     * @Groups({"vacancies"})
-     */
-    private $Skill;
-
-    /**
      * @ORM\Column(type="integer", nullable=true)
      * @Groups({"vacancies"})
      */
@@ -83,13 +77,21 @@ class Vacancy
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"vacancies"})
      */
     private $City;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Skill::class, inversedBy="vacancies")
+     * @Groups({"vacancies"})
+     */
+    private $Skills;
+
+
     public function __construct()
     {
-        $this->Skill = new ArrayCollection();
         $this->User = new ArrayCollection();
+        $this->Skills = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -121,35 +123,6 @@ class Vacancy
         return $this;
     }
 
-    /**
-     * @return Collection|Skill[]
-     */
-    public function getSkill(): Collection
-    {
-        return $this->Skill;
-    }
-
-    public function addSkill(Skill $skill): self
-    {
-        if (!$this->Skill->contains($skill)) {
-            $this->Skill[] = $skill;
-            $skill->setVacancy($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSkill(Skill $skill): self
-    {
-        if ($this->Skill->removeElement($skill)) {
-            // set the owning side to null (unless already changed)
-            if ($skill->getVacancy() === $this) {
-                $skill->setVacancy(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function getMinCost(): ?int
     {
@@ -244,6 +217,30 @@ class Vacancy
     public function setCity(string $City): self
     {
         $this->City = $City;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Skill[]
+     */
+    public function getSkills(): Collection
+    {
+        return $this->Skills;
+    }
+
+    public function addSkill(Skill $skill): self
+    {
+        if (!$this->Skills->contains($skill)) {
+            $this->Skills[] = $skill;
+        }
+
+        return $this;
+    }
+
+    public function removeSkill(Skill $skill): self
+    {
+        $this->Skills->removeElement($skill);
 
         return $this;
     }
