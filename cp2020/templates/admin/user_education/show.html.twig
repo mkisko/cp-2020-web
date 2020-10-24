@@ -2,29 +2,57 @@
 
 {% block title %}UserEducation{% endblock %}
 
+{% block subheader %}
+    <div class="subheader py-2 py-lg-6  subheader-transparent " id="kt_subheader">
+        <div class=" container  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                    <h5 class="text-dark font-weight-bold my-1 mr-5">Просмотр записи</h5>
+
+                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                        <li class="breadcrumb-item">
+                            <a class="text-muted">Главная</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a class="text-muted">Модератор</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a class="text-muted">Просмотр записи</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
 {% block body %}
-    <h1>UserEducation</h1>
+    <div class="container">
+        <div class="card card-custom p-6 gutter-b">
+            <div class="card-body">
+                <h2 class="text-dark mb-8">{{ user_education.education.title }}</h2>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user_education.id }}</td>
-            </tr>
-            <tr>
-                <th>StartDate</th>
-                <td>{{ user_education.startDate ? user_education.startDate|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>EndDate</th>
-                <td>{{ user_education.endDate ? user_education.endDate|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+                <h4 class="font-weight-bold text-dark mb-4">Описание учреждения</h4>
+                <div class="text-dark-50 line-height-lg mb-8">
+                    <p>Описание образовательного учреждения</p>
+                </div>
 
-    <a href="{{ path('user_education_index') }}">back to list</a>
+                <h4 class="font-weight-bold text-dark mb-4">Сроки обучения</h4>
+                <div class="text-dark-50 line-height-lg">
+                    <p>
+                        С {{ user_education.startDate ? user_education.startDate|date('Y-m-d H:i:s') : '' }} по 
+                        {{ user_education.endDate ? user_education.endDate|date('Y-m-d H:i:s') : '' }}
+                    </p>
+                </div>
+            </div>
 
-    <a href="{{ path('user_education_edit', {'id': user_education.id}) }}">edit</a>
+            <div class="card-footer d-flex">
+                <a href="{{ path('user_education_edit', {'id': user_education.id}) }}" class="btn btn-primary mr-3">Изменить</a>
 
-    {{ include('admin/user_education/_delete_form.html.twig') }}
+                {{ include('admin/user_education/_delete_form.html.twig') }}
+            </div>
+        </div>
+
+        <a href="{{ path('user_education_index') }}" class="btn btn-success">Назад к списку вакансий</a>
+    </div>
 {% endblock %}
