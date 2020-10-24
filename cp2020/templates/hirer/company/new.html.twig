@@ -1,11 +1,63 @@
 {% extends 'hirer/layout.html.twig' %}
 
-{% block title %}New Company{% endblock %}
+{% block title %}Edit Company{% endblock %}
+
+{% block subheader %}
+    <div class="subheader py-2 py-lg-6  subheader-transparent " id="kt_subheader">
+        <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                    <h5 class="text-dark font-weight-bold my-1 mr-5">Создание компании</h5>
+
+                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                        <li class="breadcrumb-item">
+                            <a class="text-muted">Главная</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a class="text-muted">Работодатель</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a class="text-muted">Создание компании</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Company</h1>
+    <div class="container">
+        <div class="card gutter-b">
+            <div class="card-body">
+                <div class="alert alert-custom alert-notice alert-primary fade show" role="alert">
+                    <div class="alert-icon"><i class="flaticon-warning"></i></div>
+                    <div class="alert-text">
+                        Для вашего аккаунта не найдено компаний. Чтобы иметь возможность использовать весь 
+                        функционал, необходимо заполнить форму ниже
+                    </div>
+                    
+                    <div class="alert-close">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true"><i class="ki ki-close"></i></span>
+                        </button>
+                    </div>
+                </div>
+                
+                {{ include('admin/vacancy/_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
 
-    {{ include('admin/company/_form.html.twig') }}
+{% block javascripts %}
+    <script>
+        $('form[name=company]').each(function() {
+            $(this).find(':input').each(function () {
+                if ($(this)[0].localName == 'button') return
 
-    <a href="{{ path('company_index') }}">back to list</a>
+                $(this).addClass('form-control')
+            })
+        })
+    </script>
 {% endblock %}
