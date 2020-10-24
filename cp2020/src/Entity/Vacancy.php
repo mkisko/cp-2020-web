@@ -73,7 +73,7 @@ class Vacancy
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="vacancies")
      */
-    private $User;
+    private $user;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -199,12 +199,12 @@ class Vacancy
 
     public function getUser(): ?User
     {
-        return $this->User;
+        return $this->user;
     }
 
     public function setUser(?User $User): self
     {
-        $this->User = $User;
+        $this->user = $User;
 
         return $this;
     }
