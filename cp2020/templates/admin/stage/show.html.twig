@@ -1,33 +1,69 @@
 {% extends 'admin/layout.html.twig' %}
 
-{% block title %}Stage{% endblock %}
+{% block title %}View stage{% endblock %}
+
+{% block subheader %}
+    <div class="subheader py-2 py-lg-6  subheader-transparent " id="kt_subheader">
+        <div class=" container  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <button class="burger-icon burger-icon-left mr-4 d-inline-block d-lg-none" id="kt_subheader_mobile_toggle">
+                    <span></span>
+                </button>
+
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                    <h5 class="text-dark font-weight-bold my-1 mr-5">Просмотр этапа</h5>
+
+                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                        <li class="breadcrumb-item">
+                            <a class="text-muted">Главная</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a class="text-muted">Модератор</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a class="text-muted">Просмотр этапа</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
 
 {% block body %}
-    <h1>Stage</h1>
+    <div class="container">
+        <div class="card card-custom gutter-b">
+            <div class="card-body">
+                <div class="d-flex">
+                    <div class="flex-grow-1">
+                        <div class="d-flex align-items-center justify-content-between flex-wrap">
+                            <div class="mr-3">
+                                <a href="#" class="d-flex align-items-center text-dark text-hover-primary font-size-h5 font-weight-bold mr-3">
+                                    {{ stage.title }}
+                                </a>
+                            </div>
+                            <div class="my-lg-0 my-1 d-flex">
+                                <a href="{{ path('stage_edit', {'id': stage.id}) }}" class="btn btn-success mr-3">Изменить</a>
+                                {{ include('admin/stage/_delete_form.html.twig') }}
+                            </div>
+                        </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ stage.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ stage.title }}</td>
-            </tr>
-            <tr>
-                <th>Скиллы</th>
-                <td>{% for skill in stage.skills %}
-                {{ skill.title }}
-                    {% endfor %}
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                        <div class="d-flex align-items-center flex-wrap justify-content-between">
+                            <div class="flex-grow-1 font-weight-bold text-dark-50 py-5 py-lg-2 mr-5">
+                                Навыки: <br>
 
-    <a href="{{ path('stage_index') }}">back to list</a>
+                                {% for skill in stage.skills %}
+                                    {{ skill.title }}
+                                {% else %} 
+                                    Empty
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <a href="{{ path('stage_edit', {'id': stage.id}) }}">edit</a>
-
-    {{ include('admin/stage/_delete_form.html.twig') }}
+        <a href="{{ path('stage_index') }}" class="btn btn-success">Назад к списку stage</a>
+    </div>
 {% endblock %}
