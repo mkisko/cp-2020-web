@@ -1,17 +1,38 @@
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Admin Panel!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-    <div>
-        <a href="{{ path('skill_index') }}">Скиллы</a>
-        <a href="{{ path('stage_index') }}">Этапы</a>
-        <a href="{{ path('user_stage_progress_index') }}">Этапы студента</a>
-        <a href="{{ path('vacancy_index') }}">Вакансии</a>
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin Panel!{% endblock %}
+
+{% block menu %} 
+    <div class="header-bottom">
+        <div class="container">
+            <div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
+                <div id="kt_header_menu" class="header-menu header-menu-left header-menu-mobile  header-menu-layout-default ">
+                    <ul class="menu-nav">
+                        <li class="menu-item menu-item-rel">
+                            <a href="{{ path('skill_index') }}" class="menu-link">
+                                <span class="menu-text">Навыки</span>
+                            </a>
+                        </li>
+                        <li class="menu-item menu-item-rel">
+                            <a href="{{ path('stage_index') }}" class="menu-link">
+                                <span class="menu-text">Этапы</span>
+                            </a>
+                        </li>
+
+                        <li class="menu-item menu-item-rel">
+                            <a href="{{ path('user_stage_progress_index') }}" class="menu-link">
+                                <span class="menu-text">Этапы студента</span>
+                            </a>
+                        </li>
+
+                        <li class="menu-item menu-item-rel">
+                            <a href="{{ path('vacancy_index') }}" class="menu-link">
+                                <span class="menu-text">Вакансии</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-    {% block body %}{% endblock %}
-    {% block javascripts %}{% endblock %}
-    </body>
-</html>
+{% endblock %}
