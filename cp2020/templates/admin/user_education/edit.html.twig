@@ -1,0 +1,13 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %}Edit UserEducation{% endblock %}
+
+{% block body %}
+    <h1>Edit UserEducation</h1>
+
+    {{ include('admin/user_education/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('user_education_index') }}">back to list</a>
+
+    {{ include('admin/user_education/_delete_form.html.twig') }}
+{% endblock %}

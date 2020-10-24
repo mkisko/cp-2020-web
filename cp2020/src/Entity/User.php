@@ -18,13 +18,13 @@ class User implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"users", "progress"})
+     * @Groups({"users", "progress", "companies"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Groups({"users", "progress"})
+     * @Groups({"users", "progress", "companies"})
      */
     private $email;
 
@@ -54,12 +54,60 @@ class User implements UserInterface
      */
     private $vacancies;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Company::class, mappedBy="manager")
+     */
+    private $companies;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"users"})
+     */
+    private $firstname;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"users"})
+     */
+    private $lastname;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Groups({"users"})
+     */
+    private $middlename;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"users"})
+     */
+    private $city;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Groups({"users"})
+     */
+    private $country;
+
+    /**
+     * @ORM\Column(type="text")
+     * @Groups({"users"})
+     */
+    private $description;
+
+    /**
+     * @ORM\OneToMany(targetEntity=UserEducation::class, mappedBy="user", cascade={"persist"})
+     */
+    private $educations;
+
 
 
     public function __construct()
     {
         $this->userStageProgress = new ArrayCollection();
         $this->vacancies = new ArrayCollection();
+        $this->companies = new ArrayCollection();
+        $this->educations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -206,6 +254,138 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($vacancy->getUser() === $this) {
                 $vacancy->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Company[]
+     */
+    public function getCompanies(): Collection
+    {
+        return $this->companies;
+    }
+
+    public function addCompany(Company $company): self
+    {
+        if (!$this->companies->contains($company)) {
+            $this->companies[] = $company;
+            $company->setManager($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCompany(Company $company): self
+    {
+        if ($this->companies->removeElement($company)) {
+            // set the owning side to null (unless already changed)
+            if ($company->getManager() === $this) {
+                $company->setManager(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(?string $firstname): self
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(?string $lastname): self
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    public function getMiddlename(): ?string
+    {
+        return $this->middlename;
+    }
+
+    public function setMiddlename(string $middlename): self
+    {
+        $this->middlename = $middlename;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(?string $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(string $country): self
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserEducation[]
+     */
+    public function getEducations(): Collection
+    {
+        return $this->educations;
+    }
+
+    public function addEducation(UserEducation $education): self
+    {
+        if (!$this->educations->contains($education)) {
+            $this->educations[] = $education;
+            $education->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEducation(UserEducation $education): self
+    {
+        if ($this->educations->removeElement($education)) {
+            // set the owning side to null (unless already changed)
+            if ($education->getUser() === $this) {
+                $education->setUser(null);
             }
         }
 

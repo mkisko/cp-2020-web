@@ -2,12 +2,17 @@
 
 {% block title %}Admin Panel!{% endblock %}
 
-{% block menu %} 
+{% block menu %}
     <div class="header-bottom">
         <div class="container">
             <div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
                 <div id="kt_header_menu" class="header-menu header-menu-left header-menu-mobile  header-menu-layout-default ">
                     <ul class="menu-nav">
+                        <li class="menu-item menu-item-rel">
+                            <a href="{{ path('user_index') }}" class="menu-link">
+                                <span class="menu-text">Студенты</span>
+                            </a>
+                        </li>
                         <li class="menu-item menu-item-rel">
                             <a href="{{ path('skill_index') }}" class="menu-link">
                                 <span class="menu-text">Навыки</span>
@@ -30,6 +35,17 @@
                                 <span class="menu-text">Вакансии</span>
                             </a>
                         </li>
+                        <li class="menu-item menu-item-rel">
+                            <a href="{{ path('company_index') }}" class="menu-link">
+                                <span class="menu-text">Компании</span>
+                            </a>
+                        </li>
+                        <li class="menu-item menu-item-rel">
+                            <a href="{{ path('education_index') }}" class="menu-link">
+                                <span class="menu-text">Учебные заведения</span>
+                            </a>
+                        </li>
+
                     </ul>
                 </div>
             </div>

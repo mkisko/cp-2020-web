@@ -43,12 +43,15 @@ class VacancyController extends AbstractApiController {
                 $val["title"] = $skill->getTitle();
                 $value["skills"][] = $val;
             }
-
+            $value["company"]["id"] = $vacancy->getCompany()->getId();
+            $value["company"]["title"] = $vacancy->getCompany()->getTitle();
+            $value["company"]["description"] = $vacancy->getCompany()->getDescription();
             $value["minCost"] = $vacancy->getMinCost();
             $value["maxCost"] = $vacancy->getMaxCost();
             $value["typeIntern"] = $vacancy->getTypeIntern();
             $value["user"]["id"] = $vacancy->getUser()->getId();
             $value["user"]["email"] = $vacancy->getUser()->getEmail();
+
             $value["expired"] = $vacancy->getExpired();
             $value["publichedAt"] = $vacancy->getPublichedAt();
             $value["conditions"] = $vacancy->getConditions();
