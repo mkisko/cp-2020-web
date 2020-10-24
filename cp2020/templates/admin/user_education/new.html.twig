@@ -1,0 +1,11 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %}New UserEducation{% endblock %}
+
+{% block body %}
+    <h1>Create new UserEducation</h1>
+
+    {{ include('admin/user_education/_form.html.twig') }}
+
+    <a href="{{ path('user_education_index') }}">back to list</a>
+{% endblock %}

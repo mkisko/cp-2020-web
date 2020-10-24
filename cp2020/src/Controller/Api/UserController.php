@@ -19,13 +19,13 @@ class UserController extends AbstractApiController {
     }
 
     /**
-     * @Route("/{$id}", name="get_user", methods={"GET", "POST"})
+     * @Route("/{id}", name="get_user", methods={"GET", "POST"})
      * @param $id
      * @return Response
      */
     public function getUserById($id)
     {
-        $user = $this->getDoctrine()->getRepository('User')->find($id);
+        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
 
         if (!$user) {
             return $this->createResponse("not found", 404);
@@ -39,7 +39,7 @@ class UserController extends AbstractApiController {
      * @Route("/", name="get_users", methods={"GET", "POST"})
      */
     public function getUsers(){
-        $users = $this->getDoctrine()->getRepository('App:User')->findAll();
+        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
 
         $jsonContent = $this->serializer->serialize($users, 'json', ['groups' => 'users']);
 
