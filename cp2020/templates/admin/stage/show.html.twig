@@ -15,6 +15,13 @@
                 <th>Title</th>
                 <td>{{ stage.title }}</td>
             </tr>
+            <tr>
+                <th>Скиллы</th>
+                <td>{% for skill in stage.skills %}
+                {{ skill.title }}
+                    {% endfor %}
+                </td>
+            </tr>
         </tbody>
     </table>
 
