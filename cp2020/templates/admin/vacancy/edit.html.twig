@@ -2,12 +2,54 @@
 
 {% block title %}Edit Vacancy{% endblock %}
 
+{% block subheader %}
+    <div class="subheader py-2 py-lg-6  subheader-transparent " id="kt_subheader">
+        <div class=" container  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <button class="burger-icon burger-icon-left mr-4 d-inline-block d-lg-none" id="kt_subheader_mobile_toggle">
+                    <span></span>
+                </button>
+
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                    <h5 class="text-dark font-weight-bold my-1 mr-5">Изменение вакансии</h5>
+
+                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                        <li class="breadcrumb-item">
+                            <a class="text-muted">Главная</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a class="text-muted">Модератор</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a class="text-muted">Изменение вакансии</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
 {% block body %}
-    <h1>Edit Vacancy</h1>
+    <div class="container">
+        <div class="card gutter-b">
+            <div class="card-body">
+                {{ include('admin/vacancy/_form.html.twig') }}
+            </div>
+        </div>
 
-    {{ include('admin/vacancy/_form.html.twig', {'button_label': 'Update'}) }}
+        <a href="{{ path('vacancy_index') }}">Назад к списку вакансий</a>
+    </div>
+{% endblock %}
 
-    <a href="{{ path('vacancy_index') }}">back to list</a>
+{% block javascripts %}
+    <script>
+        $('form[name=vacancy]').each(function() {
+            $(this).find(':input').each(function () {
+                if ($(this)[0].localName == 'button') return
 
-    {{ include('admin/vacancy/_delete_form.html.twig') }}
+                $(this).addClass('form-control')
+            })
+        })
+    </script>
 {% endblock %}

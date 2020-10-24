@@ -2,53 +2,67 @@
 
 {% block title %}Vacancy{% endblock %}
 
+{% block subheader %}
+    <div class="subheader py-2 py-lg-6  subheader-transparent " id="kt_subheader">
+        <div class=" container  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <button class="burger-icon burger-icon-left mr-4 d-inline-block d-lg-none" id="kt_subheader_mobile_toggle">
+                    <span></span>
+                </button>
+
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                    <h5 class="text-dark font-weight-bold my-1 mr-5">Просмотр вакансии</h5>
+
+                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                        <li class="breadcrumb-item">
+                            <a class="text-muted">Главная</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a class="text-muted">Модератор</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a class="text-muted">Просмотр вакансии</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
 {% block body %}
-    <h1>Vacancy</h1>
+    <div class="container">
+        <div class="card card-custom p-6 gutter-b">
+            <div class="card-body">
+                <h2 class="text-dark mb-8">{{ vacancy.title }}</h2>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ vacancy.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ vacancy.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ vacancy.description }}</td>
-            </tr>
-            <tr>
-                <th>MinCost</th>
-                <td>{{ vacancy.minCost }}</td>
-            </tr>
-            <tr>
-                <th>MaxCost</th>
-                <td>{{ vacancy.maxCost }}</td>
-            </tr>
-            <tr>
-                <th>TypeIntern</th>
-                <td>{{ vacancy.typeIntern }}</td>
-            </tr>
-            <tr>
-                <th>Expired</th>
-                <td>{{ vacancy.Expired ? vacancy.Expired|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>PublichedAt</th>
-                <td>{{ vacancy.PublichedAt ? vacancy.PublichedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Conditions</th>
-                <td>{{ vacancy.conditions }}</td>
-            </tr>
-        </tbody>
-    </table>
+                <h4 class="font-weight-bold text-dark mb-4">Описание вакансии</h4>
+                <div class="text-dark-50 line-height-lg mb-8">
+                    <p>{{ vacancy.description }}</p>
+                </div>
 
-    <a href="{{ path('vacancy_index') }}">back to list</a>
+                <h4 class="font-weight-bold text-dark mb-4">Условия работы</h4>
+                <div class="text-dark-50 line-height-lg">
+                    <p>
+                        Минимальная ЗП от {{ vacancy.minCost }} до {{ vacancy.maxCost }} рублей
+                    </p>
 
-    <a href="{{ path('vacancy_edit', {'id': vacancy.id}) }}">edit</a>
+                    <p>
+                        {{ vacancy.conditions }}
+                    </p>
+                </div>
 
-    {{ include('admin/vacancy/_delete_form.html.twig') }}
+                <small>Опубликовано {{ vacancy.PublichedAt ? vacancy.PublichedAt|date('Y-m-d H:i:s') : '' }}</small>
+            </div>
+
+            <div class="card-footer d-flex">
+                <a href="{{ path('vacancy_edit', {'id': vacancy.id}) }}" class="btn btn-primary mr-3">Изменить</a>
+
+                {{ include('admin/vacancy/_delete_form.html.twig') }}
+            </div>
+        </div>
+
+        <a href="{{ path('vacancy_index') }}" class="btn btn-success">Назад к списку вакансий</a>
+    </div>
+
 {% endblock %}
