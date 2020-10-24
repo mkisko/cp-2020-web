@@ -2,25 +2,46 @@
 
 {% block title %}Education{% endblock %}
 
+{% block subheader %}
+    <div class="subheader py-2 py-lg-6  subheader-transparent " id="kt_subheader">
+        <div class=" container  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <button class="burger-icon burger-icon-left mr-4 d-inline-block d-lg-none" id="kt_subheader_mobile_toggle">
+                    <span></span>
+                </button>
+
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                    <h5 class="text-dark font-weight-bold my-1 mr-5">Просмотр образовательного учреждения</h5>
+
+                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                        <li class="breadcrumb-item">
+                            <a class="text-muted">Главная</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a class="text-muted">Модератор</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a class="text-muted">Просмотр образовательного учреждения</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
 {% block body %}
-    <h1>Education</h1>
+    <div class="container">
+        <div class="card card-custom p-6 gutter-b">
+            <div class="card-body">
+                <h2 class="text-dark mb-8">{{ education.title }}</h2>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ education.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ education.title }}</td>
-            </tr>
-        </tbody>
-    </table>
+                <div class="text-dark-50 line-height-lg mb-8">
+                    Информация об учреждении
+                </div>
+            </div>
+        </div>
 
-    <a href="{{ path('education_index') }}">back to list</a>
-
-    <a href="{{ path('education_edit', {'id': education.id}) }}">edit</a>
-
-    {{ include('admin/education/_delete_form.html.twig') }}
+        <a href="{{ path('education_index') }}" class="btn btn-success">Назад к списку учреждений</a>
+    </div>
 {% endblock %}
