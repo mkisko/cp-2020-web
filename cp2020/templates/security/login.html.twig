@@ -27,17 +27,17 @@
                             </div>
 
                             {% if error %}
-                                <div class="alert alert-danger">Логин или пароль не совпадают! Попробуйте еще раз</div>
+                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                             {% endif %}
                             
-                            <input type="hidden" name="token" value="{{ csrf_token('random') }}">
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
                             <div class="form-group">
                                 <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="email" placeholder="Ваша электронная почта" name="email" autocomplete="off" />
                             </div>
 
                             <div class="form-group">
-                                <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="text" placeholder="Ваш пароль" name="password" autocomplete="off" />
+                                <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="password" placeholder="Ваш пароль" name="password" autocomplete="off" />
                             </div>
 
                             <div class="form-group d-flex flex-wrap flex-center pb-lg-0 pb-3">
