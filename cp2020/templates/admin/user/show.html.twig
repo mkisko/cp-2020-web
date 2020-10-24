@@ -2,61 +2,87 @@
 
 {% block title %}User{% endblock %}
 
+{% block subheader %}
+    <div class="subheader py-2 py-lg-6  subheader-transparent " id="kt_subheader">
+        <div class=" container  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                    <h5 class="text-dark font-weight-bold my-1 mr-5">Подробнее о студенте</h5>
+
+                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                        <li class="breadcrumb-item">
+                            <a class="text-muted">Главная</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a class="text-muted">Модератор</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a class="text-muted">Подробнее о студенте</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
 {% block body %}
-    <h1>User</h1>
+    <div class="container">
+        <div class="card card-custom p-6 gutter-b">
+            <div class="card-body">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ user.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>{{ user.email }}</td>
+                        </tr>
+                        <tr>
+                            <th>Roles</th>
+                            <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>IsVerified</th>
+                            <td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Firstname</th>
+                            <td>{{ user.firstname }}</td>
+                        </tr>
+                        <tr>
+                            <th>Lastname</th>
+                            <td>{{ user.lastname }}</td>
+                        </tr>
+                        <tr>
+                            <th>Middlename</th>
+                            <td>{{ user.middlename }}</td>
+                        </tr>
+                        <tr>
+                            <th>City</th>
+                            <td>{{ user.city }}</td>
+                        </tr>
+                        <tr>
+                            <th>Country</th>
+                            <td>{{ user.country }}</td>
+                        </tr>
+                        <tr>
+                            <th>Description</th>
+                            <td>{{ user.description }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
-                <th>IsVerified</th>
-                <td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Firstname</th>
-                <td>{{ user.firstname }}</td>
-            </tr>
-            <tr>
-                <th>Lastname</th>
-                <td>{{ user.lastname }}</td>
-            </tr>
-            <tr>
-                <th>Middlename</th>
-                <td>{{ user.middlename }}</td>
-            </tr>
-            <tr>
-                <th>City</th>
-                <td>{{ user.city }}</td>
-            </tr>
-            <tr>
-                <th>Country</th>
-                <td>{{ user.country }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ user.description }}</td>
-            </tr>
-        </tbody>
-    </table>
+            <div class="card-footer d-flex">
+                <a href="{{ path('user_edit', {'id': user.id}) }}" class="btn btn-primary mr-3">Изменить</a>
 
-    <a href="{{ path('user_index') }}">back to list</a>
+                {{ include('admin/user/_delete_form.html.twig') }}
+            </div>
+        </div>
 
-    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
-
-    {{ include('admin/user/_delete_form.html.twig') }}
+        <a href="{{ path('user_index') }}" class="btn btn-success">Назад к списку вакансий</a>
+    </div>
 {% endblock %}
