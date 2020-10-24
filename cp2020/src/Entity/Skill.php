@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SkillRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -15,13 +17,13 @@ class Skill
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"skills"})
+     * @Groups({"skills", "vacancies"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"skills"})
+     * @Groups({"skills",  "vacancies"})
      */
     private $title;
 
@@ -31,9 +33,15 @@ class Skill
     private $stage;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Vacancy::class, inversedBy="Skill")
+     * @ORM\ManyToMany(targetEntity=Vacancy::class, mappedBy="Skills")
      */
-    private $vacancy;
+    private $vacancies;
+
+    public function __construct()
+    {
+        $this->vacancies = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -64,15 +72,32 @@ class Skill
         return $this;
     }
 
-    public function getVacancy(): ?Vacancy
+    /**
+     * @return Collection|Vacancy[]
+     */
+    public function getVacancies(): Collection
     {
-        return $this->vacancy;
+        return $this->vacancies;
     }
 
-    public function setVacancy(?Vacancy $vacancy): self
+    public function addVacancy(Vacancy $vacancy): self
     {
-        $this->vacancy = $vacancy;
+        if (!$this->vacancies->contains($vacancy)) {
+            $this->vacancies[] = $vacancy;
+            $vacancy->addSkill($this);
+        }
 
         return $this;
     }
+
+    public function removeVacancy(Vacancy $vacancy): self
+    {
+        if ($this->vacancies->removeElement($vacancy)) {
+            $vacancy->removeSkill($this);
+        }
+
+        return $this;
+    }
+
+
 }

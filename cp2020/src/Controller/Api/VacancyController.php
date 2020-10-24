@@ -15,6 +15,17 @@ class VacancyController extends AbstractApiController {
     }
 
     /**
+     * @Route("/vac", name="get_vac", methods={"GET"})
+     */
+     public function getVac(){
+
+        $vacancies = $this->getDoctrine()->getRepository(Vacancy::class)->findAll();
+
+        $jsonContent = $this->serializer->serialize($vacancies, 'json', ['groups' => 'vacancies']);
+
+        return $this->createResponse($jsonContent);
+}
+    /**
      * @Route("/", name="get_vacancies", methods={"GET"})
      */
     public function getVacancies()
@@ -27,8 +38,12 @@ class VacancyController extends AbstractApiController {
             $value["id"] = $vacancy->getId();
             $value["title"] = $vacancy->getTitle();
             $value["description"] = $vacancy->getDescription();
-            $value["skills"]["id"] = 1;
-            $value["skills"]["title"] = "My SQL";
+            foreach ($vacancy->getSkills() as $skill) {
+                $val["id"] = $skill->getId();
+                $val["title"] = $skill->getTitle();
+                $value["skills"][] = $val;
+            }
+
             $value["minCost"] = $vacancy->getMinCost();
             $value["maxCost"] = $vacancy->getMaxCost();
             $value["typeIntern"] = $vacancy->getTypeIntern();
@@ -46,8 +61,6 @@ class VacancyController extends AbstractApiController {
 
 
         $jsonContent = $this->serializer->serialize($values, 'json');
-
-        return $this->createResponse($jsonContent);
 
         return $this->createResponse($jsonContent);
     }
