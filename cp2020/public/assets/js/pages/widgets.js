@@ -1229,10 +1229,10 @@ var KTWidgets = function() {
 
         var options = {
             series: [{
-                name: 'Net Profit',
+                name: 'Просмотров',
                 data: [60, 50, 80, 40, 100, 60]
             }, {
-                name: 'Revenue',
+                name: 'Откликов',
                 data: [70, 60, 110, 40, 50, 70]
             }],
             chart: {
@@ -1257,7 +1257,7 @@ var KTWidgets = function() {
                 curve: 'smooth'
             },
             xaxis: {
-                categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                categories: ['Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь'],
                 axisBorder: {
                     show: false,
                 },
@@ -1326,7 +1326,7 @@ var KTWidgets = function() {
                 },
                 y: {
                     formatter: function(val) {
-                        return "$" + val + " thousands"
+                        return val
                     }
                 }
             },
@@ -2911,7 +2911,7 @@ var KTWidgets = function() {
                     }
                 }
             },
-            colors: [KTApp.getSettings()['colors']['theme']['base']['success']],
+            colors: ['#1B55A0'],
             stroke: {
                 lineCap: "round",
             },

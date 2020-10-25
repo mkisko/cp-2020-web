@@ -19,10 +19,11 @@ class ResumeController extends AbstractController {
      * @return Response
      */
     public function index() {
-        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+        // remove it for static html
+        // $users = $this->getDoctrine()->getRepository(User::class)->findAll();
 
         return $this->render('hirer/resume/index.html.twig', [
-            'users' => $users
+            // 'users' => $users
         ]);
     }
 
@@ -32,11 +33,11 @@ class ResumeController extends AbstractController {
      * @return Response
      */
     public function show($id) {
-
-        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+        // remove it for static html
+        // $user = $this->getDoctrine()->getRepository(User::class)->find($id);
 
         return $this->render('hirer/resume/show.html.twig', [
-            'user' => $user
+            // 'user' => $user
         ]);
     }
 
