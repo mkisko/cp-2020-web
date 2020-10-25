@@ -16,9 +16,21 @@ class UserEducationType extends AbstractType
     {
         $builder
             ->add('startDate', TextType::class, [
-                'label' => 'Начало обучения'
+                'label' => 'Начало обучения',
+                'attr' => [
+                    'class' => 'form-control input-inline datetimepicker',
+                    'data-provide' => 'datetimepicker',
+                    'html5' => false,
+                ],
             ])
-            ->add('endDate', TextType::class)
+            ->add('endDate', TextType::class, [
+                'label' => 'Окончание обучения',
+                'attr' => [
+                    'class' => 'form-control input-inline datetimepicker',
+                    'data-provide' => 'datetimepicker',
+                    'html5' => false,
+                ],
+            ])
             ->add('Education', EntityType::class, [
                 'label' => "Образование",
                 'class' => Education::class,
