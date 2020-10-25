@@ -1,3 +1,4 @@
+.PHONY: boot
 boot:
 	- composer install
 	- bin/console doctrine:schema:create
