@@ -1,4 +1,15 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
+<script type="text/javascript">
+    $(function () {
+        $('#user_education_startDate').datepicker({
+            locale: 'ru'
+        });
+
+        $('#user_education_endDate').datepicker({
+            locale: 'ru'
+        });
+    });
+</script>
     <button class="btn btn-success mt-3">{{ button_label|default('Сохранить') }}</button>
 {{ form_end(form) }}

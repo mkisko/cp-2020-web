@@ -12,6 +12,8 @@
     <link href="/assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.6" rel="stylesheet" type="text/css" />
     <link href="/assets/css/style.bundle.css?v=7.0.6" rel="stylesheet" type="text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
 
     {% block stylesheets %}{% endblock %}
 </head>
@@ -72,18 +74,18 @@
                                     <div class="topbar-item">
                                         <div class="btn btn-icon btn-hover-transparent-white w-auto d-flex align-items-center btn-lg px-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <div class="d-flex flex-column text-right pr-3">
-                                                <span class="text-white opacity-50 font-weight-bold font-size-sm d-none d-md-inline">UserName</span>
-                                                <span class="text-white font-weight-bolder font-size-sm d-none d-md-inline">Moderator</span>
+                                                <span class="text-white opacity-50 font-weight-bold font-size-sm d-none d-md-inline">{{ app.user.firstname }} {{ app.user.lastname }}</span>
+                                                <span class="text-white font-weight-bolder font-size-sm d-none d-md-inline">{{ app.user.email }}</span>
                                             </div>
                                             <span class="symbol symbol-35">
-                                                <span class="symbol-label font-size-h5 font-weight-bold text-white bg-white-o-30">UN</span>
+                                                <span class="symbol-label font-size-h5 font-weight-bold text-white bg-white-o-30">{{ app.user.firstname | slice(0,1) }}{{ app.user.lastname | slice(0,1) }}</span>
                                             </span>
                                         </div>
 
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="#">Профиль</a>
+                                            <a class="dropdown-item" href="{{ path('check_profile') }}">Профиль</a>
                                             <a class="dropdown-item" href="#">Настройки</a>
-                                            <a class="dropdown-item" href="#">Выйти</a>
+                                            <a class="dropdown-item" href="{{ path('app_logout') }}">Выйти</a>
                                         </div>
                                     </div>
                                 </div>
