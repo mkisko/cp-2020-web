@@ -95,6 +95,8 @@ class Vacancy
 
     public function __construct()
     {
+        $this->setExpired(new \DateTime(2020-11-25));
+        $this->setPublichedAt(new \DateTime(2020-11-25));
         $this->User = new ArrayCollection();
         $this->Skills = new ArrayCollection();
     }

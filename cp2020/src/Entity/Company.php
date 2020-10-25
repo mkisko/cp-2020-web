@@ -53,6 +53,7 @@ class Company
 
     public function __construct()
     {
+        $this->setType(0);
         $this->vacancies = new ArrayCollection();
     }
 
