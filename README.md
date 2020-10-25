@@ -1,4 +1,4 @@
-# GC Platform
+# GC Platform Web
 
 
 ## Описание
@@ -7,13 +7,13 @@
 
 ## Запуск
 1) `docker-compose build`
-2) `docker-compose ud -d`
-3) Inside docker container `php` (`docker-compose exec php bash`) run:
-3.1) `composer install`
-3.2) `bin/console doctrine:schema:create`
-3.3) `bin/console doctrine:schema:update --force`
-3.4) `bin/console cache:clear`
-4) Successful! Server is running.
+2) `docker-compose up -d`
+3) Inside docker container `php` (`docker-compose exec php bash`) run:          
+3.1) `composer install`          
+3.2) `bin/console doctrine:schema:create`          
+3.3) `bin/console doctrine:schema:update --force`           
+3.4) `bin/console cache:clear`           
+4) Successful! Server is running.            
 
 
 ## Технологии
