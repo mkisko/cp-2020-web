@@ -62,9 +62,9 @@ $ docker-compose up -d
 ```
 4. Далее войдите в контейнер `docker-compose`:
 ```sh
-docker-compose exec -it <ID CONTAINER>
+docker-compose exec php bash
 ```
-5) Далее войти в контейнер `php` (`docker-compose exec php bash`) и выполнить:  
+5) Выполните следующие команды в контейнере:  
 ```sh 
 $ composer install
 $ bin/console doctrine:schema:create
