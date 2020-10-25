@@ -31,7 +31,7 @@
 
             <div class="d-flex align-items-center">
                 <a href="{{ path('user_new') }}" class="btn btn-primary font-weight-bolder btn-sm">
-                    Создать пользователя
+                    Создать студента
                 </a>
             </div>
         </div>
@@ -67,13 +67,14 @@
                                             </td>
                                             <td>
                                                 <a href="#" class="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg">
-                                                    {{ user.firstname|default('anonimous') }} {{ user.lastname|default('user') }}
+                                                    {{ user.firstname|default('anonimous') }} {{ user.lastname|default('user') }} {{ user.middlename|default('') }}
                                                 </a>
 
                                                 <span class="text-muted font-weight-bold d-block">{{ user.email }}</span>
                                             </td>
-                                            <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                                            <td>{{ user.middlename|default('Middle name is empty') }}</td>
+                                            <td>{{ user.country }}</td>
+                                            <td>{{ user.city }}</td>
+                                            <td>{{ user.userStageProgress.count }} этапа развития</td>
 
                                             <td class="text-right pr-0">
                                                 <a href="{{ path('user_show', {'id': user.id}) }}" class="btn btn-light">
