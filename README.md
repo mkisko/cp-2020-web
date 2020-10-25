@@ -66,7 +66,7 @@ $ docker-compose up -d
 ```sh
 docker-compose exec php bash
 ```
-5) Выполните следующие команды в контейнере:  
+5. Выполните следующие команды в контейнере:  
 ```sh 
 $ composer install
 $ bin/console doctrine:schema:create
@@ -74,4 +74,12 @@ $ bin/console doctrine:schema:update --force
 $ bin/console cache:clear`
 ```
 
-6) Все хорошо. Теперь сервер запущен и доступен по адресу `http://localhost:8000/.
+6. Все хорошо. Теперь сервер запущен и доступен по адресу `http://localhost:8000/.
+
+### API
+| # | METHOD | URL | PARAM | COMMENT |
+| 1 | GET USER |  http://localhost:8000/api/users/{id} | id - идентификатор пользователя | Возвращает пользователя |
+| 2 | GET USERS|  http://localhost:8001/api/users/ 	   | - | Возвращает список пользователей|  
+| 3 | GET SKILLS|  http://localhost:8001/api/skills/    | - 								 |Возвращает список скиллов|  
+| 4 | GET PROGRESSES |  http://localhost:8001/api/progress/ 	   | id - идентификатор пользователя | Возвращает прогресс пользователя|  
+| 5 | GET COMPANY|  http://localhost:8001/api/COMPANY/ 	   | - 			|						   |  
