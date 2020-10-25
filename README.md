@@ -8,12 +8,14 @@
 ## Запуск
 1) `docker-compose build`
 2) `docker-compose up -d`
-3) Inside docker container `php` (`docker-compose exec php bash`) run:          
-3.1) `composer install`          
-3.2) `bin/console doctrine:schema:create`          
-3.3) `bin/console doctrine:schema:update --force`           
-3.4) `bin/console cache:clear`           
-4) Successful! Server is running.            
+3) Внутри контейнера `php` (`docker-compose exec php bash`) необходимо запустить:          
+`composer install`          
+`bin/console doctrine:schema:create`          
+`bin/console doctrine:schema:update --force`           
+`bin/console cache:clear`           
+Или вместо этого, одна команда сделает так же: `docker-compose exec php make boot`. Внимание! Команда `make boot` должна быть запущена только один раз.           
+Если в последующем необходимо обновить кэш, это можно сделать с помощью команды `docker-compose exec php make clear`.
+4) Все! Сервер запущен и работает на порту :8000.            
 
 
 ## Технологии
